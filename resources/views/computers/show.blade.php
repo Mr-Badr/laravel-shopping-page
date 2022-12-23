@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title','computers')
+@section('title','Show Computer')
 
 
 @section('content')
@@ -9,7 +9,7 @@
 	</div>
 
 	<div class="mt-8">
-    <h3>{{ $computer['name'] }} is from <strong>{{ $computer['origin'] }}</strong></h3>
+    <p>{{ $computer['name'] }} ( {{ $computer['origin'] }} ) - <strong>999$</strong></p>
 	</div>
 </div>
 @endsection
