@@ -55,9 +55,16 @@ class ComputresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($computer)
     {
-        //
+        $computers = self::getData();
+        $index = array_search($computer, array_column($computers, 'id'));
+        if($index === false) {
+            abort(404);
+        }
+        return view('computers.show', [
+            'computer' => $computers[$index]
+        ]);
     }
 
     /**
