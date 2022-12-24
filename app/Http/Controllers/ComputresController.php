@@ -82,9 +82,11 @@ class ComputresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($computer)
     {
-        //
+        return view('computers.edit', [
+            'computer' => Computer::findOrFail($computer)
+        ]);
     }
 
     /**

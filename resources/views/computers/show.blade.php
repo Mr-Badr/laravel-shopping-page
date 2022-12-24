@@ -11,5 +11,7 @@
 	<div class="mt-8">
     <p>{{ $computer['name'] }} ( {{ $computer['origin'] }} ) - <strong>{{ $computer['price'] }}$</strong></p>
 	</div>
+
+	<a href="{{route('computers.edit', $computer->id)}}" class="edit-btn">edit</a>
 </div>
 @endsection
