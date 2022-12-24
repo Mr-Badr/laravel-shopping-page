@@ -10,8 +10,9 @@
   </div>
 
   <div class="flex justify-center pt-8">
-    <form action="{{route('computers.store')}}" method="post" class="form bg-white p-6 border-1">
+    <form action="{{ route('computers.update', ['computer' => $computer->id]) }}" method="post" class="form bg-white p-6 border-1">
       @csrf
+      @method('PUT')
       <div>
         <label for="computer-name" class="text-sm">Computer Name</label>
         <input type="text" class="text-lg border-1" id="computer-name" value="{{$computer->name}}" name="computer-name">

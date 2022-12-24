@@ -96,9 +96,23 @@ class ComputresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $computer)
     {
-        //
+        $request->validate([
+            'computer-name' => 'required',
+            'computer-origin' => 'required',
+            'computer-price' => ['required' , 'integer'],
+        ]);
+
+        $to_update = Computer::findOrFail($computer);
+
+        $to_update->name = strip_tags($request->input('computer-name'));
+        $to_update->origin = strip_tags($request->input('computer-origin'));
+        $to_update->price = strip_tags($request->input('computer-price'));
+
+        $to_update->save();
+
+        return redirect()->route('computers.show', $computer);
     }
 
     /**
