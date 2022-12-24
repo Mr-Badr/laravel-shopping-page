@@ -15,7 +15,7 @@
 
       <a href="{{ route('computers.show', [ 'computer' => $computer['id'] ] ) }}">
         <li>
-          <p>{{ $computer['name'] }} ( {{ $computer['origin'] }} ) - <strong>999$</strong></p>
+          <p>{{ $computer['name'] }} ( {{ $computer['origin'] }} ) - <strong>{{ $computer['price'] }}$</strong></p>
         </li>
       </a>
 

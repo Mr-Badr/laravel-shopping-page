@@ -53,3 +53,9 @@ form button {
   border-radius: 5px;
   margin: 10px 0;
 }
+
+.form-error {
+  margin: 0;
+  font-size: .8rem;
+  color: red;
+}

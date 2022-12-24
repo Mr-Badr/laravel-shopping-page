@@ -9,7 +9,7 @@
 	</div>
 
 	<div class="mt-8">
-    <p>{{ $computer['name'] }} ( {{ $computer['origin'] }} ) - <strong>999$</strong></p>
+    <p>{{ $computer['name'] }} ( {{ $computer['origin'] }} ) - <strong>{{ $computer['price'] }}$</strong></p>
 	</div>
 </div>
 @endsection

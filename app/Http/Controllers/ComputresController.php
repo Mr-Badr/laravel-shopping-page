@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Computer;
 
 class ComputresController extends Controller
 {
     // Array if static Data
-    private static function getData(){
+/*     private static function getData(){
         return [
             ['id' => 1, 'name' => 'LG', 'origin' => 'korea'],
             ['id' => 2, 'name' => 'HP', 'origin' => 'USA'],
             ['id' => 3, 'name' => 'Siemens', 'origin' => 'Germany'],
             ['id' => 4, 'name' => 'Lenovo', 'origin' => 'France'],
         ];
-    }
+    } */
 
     /**
      * Display a listing of the resource.
@@ -24,7 +25,7 @@ class ComputresController extends Controller
     public function index()
     {
         return view('computers.index',[
-            'computers' => self::getData()
+            'computers' => Computer::all(),
         ]);
     }
 
@@ -46,7 +47,20 @@ class ComputresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'computer-name' => 'required',
+            'computer-origin' => 'required',
+            'computer-price' => ['required' , 'integer'],
+        ]);
+
+        $computer = new Computer();
+        $computer->name = strip_tags($request->input('computer-name'));
+        $computer->origin = strip_tags($request->input('computer-origin'));
+        $computer->price = strip_tags($request->input('computer-price'));
+
+        $computer->save();
+
+        return redirect()->route('computers.index');
     }
 
     /**
@@ -56,14 +70,9 @@ class ComputresController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($computer)
-    {
-        $computers = self::getData();
-        $index = array_search($computer, array_column($computers, 'id'));
-        if($index === false) {
-            abort(404);
-        }
+    {  
         return view('computers.show', [
-            'computer' => $computers[$index]
+            'computer' => Computer::findOrFail($computer)
         ]);
     }
 
